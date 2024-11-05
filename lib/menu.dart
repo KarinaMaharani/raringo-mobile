@@ -95,8 +95,8 @@ class MyHomePage extends StatelessWidget {
               const SnackBar(content: Text("Kamu telah menekan tombol Tambah Produk!")),
             );
         },
-        child: const Icon(Icons.add),
         backgroundColor: Colors.indigo[600],
+        child: const Icon(Icons.add),
       ),
     );
   }
