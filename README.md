@@ -6,7 +6,7 @@
 
 ## Tugas 7
 Jelaskan apa yang dimaksud dengan stateless widget dan stateful widget, dan jelaskan perbedaan dari keduanya.  
-**Jawab**: 
+**Jawab**:  
 Stateless Widget : Widget yang tidak menyimpan state sehingga tidak dapat mengubah informasi pada dirinya sendiri. Untuk mengubah widget ini perlu external event pada parent untuk mengubah tampilan dari widget ini.  
 
 Stateful Widget : Widget yang menyimpan state (informasi yang bisa dibaca saat widget dibuat atau informasi yang berubah selama _lifetime_ widget).  
@@ -32,8 +32,8 @@ Fungsi dari setState() adalah mengubah Stateful Widget sehingga tampilan atau da
 
 Jelaskan perbedaan antara const dengan final.  
 **Jawab**:  
-const : digunakan untuk konstanta dan dideklarasi saat compile. Sehingga perlu dipastikan variabel dengan const memiliki nilai yang tidak bisa diubah sejak compile
-final : digunakan untuk variabel yang di deklarasikan dan tidak bisa diubah saat dideklarasi selama runtime. Sehingga variabel final bisa jadi hanya diinstansi jika memenuhi kondisi pada runtime sehingga jika kondisi tersebut tidak dipenuhi variabel final tidak _exist_ selama program berjalan. Sedangkan untuk const akan teteap terdefinisi daan _exist_ sekalipun syarat kondisi dipenuhi.  
+- const : digunakan untuk konstanta dan dideklarasi saat compile. Sehingga perlu dipastikan variabel dengan const memiliki nilai yang tidak bisa diubah sejak compile
+- final : digunakan untuk variabel yang di deklarasikan dan tidak bisa diubah saat dideklarasi selama runtime. Sehingga variabel final bisa jadi hanya diinstansi jika memenuhi kondisi pada runtime sehingga jika kondisi tersebut tidak dipenuhi variabel final tidak _exist_ selama program berjalan. Sedangkan untuk const akan teteap terdefinisi daan _exist_ sekalipun syarat kondisi dipenuhi.  
 
 Jelaskan bagaimana cara kamu mengimplementasikan checklist-checklist di atas.  
 **Jawab**:
