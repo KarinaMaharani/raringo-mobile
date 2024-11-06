@@ -31,8 +31,8 @@ Fungsi dari setState() adalah mengubah Stateful Widget sehingga tampilan atau da
 
 Jelaskan perbedaan antara const dengan final.  
 **Jawab**:  
-- const : digunakan untuk konstanta dan dideklarasi saat compile. Sehingga perlu dipastikan variabel dengan const memiliki nilai yang tidak bisa diubah sejak compile
-- final : digunakan untuk variabel yang di deklarasikan dan tidak bisa diubah saat dideklarasi selama runtime. Sehingga variabel final bisa jadi hanya diinstansi jika memenuhi kondisi pada runtime sehingga jika kondisi tersebut tidak dipenuhi variabel final tidak _exist_ selama program berjalan. Sedangkan untuk const akan teteap terdefinisi daan _exist_ sekalipun syarat kondisi dipenuhi.  
+- const : digunakan untuk konstanta dan dideklarasi saat compile. Sehingga perlu dipastikan variabel dengan const memiliki nilai yang tidak bisa diubah sejak compile. const digunakan untuk nilai yang diketahui sebelum runtime dan tidak boleh berubah.
+- final : digunakan untuk variabel yang di deklarasikan dan tidak bisa diubah saat dideklarasi selama runtime. Sehingga variabel final bisa jadi hanya diinstansi jika memenuhi kondisi pada runtime sehingga jika kondisi tersebut tidak dipenuhi variabel final tidak _exist_ selama program berjalan. Sedangkan untuk const akan teteap terdefinisi daan _exist_ sekalipun syarat kondisi pada runtime dipenuhi. final digunakan untuk variabel yang dijalankan saat runtime dan ingin diinisialisasi sekali saja (tidak perlu diubah)
 
 Jelaskan bagaimana cara kamu mengimplementasikan checklist-checklist di atas.  
 **Jawab**:  
