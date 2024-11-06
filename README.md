@@ -110,10 +110,10 @@ appBar: AppBar(
       ),
 ```
 4.  Mengimplementasikan warna-warna yang berbeda untuk setiap tombol (Lihat Daftar Produk, Tambah Produk, dan Logout)
-Saya menggunakan warna berupa yellow dan text indigo 600 untuk button Lihat Daftar Produk dengan kutipan kode berikut
+Saya menggunakan warna berupa white dan text indigo 600 untuk button Lihat Daftar Produk dengan kutipan kode berikut
 ```
 backgroundColor: Colors.yellow[800], // untuk warna button
-foregroundColor: Colors.indigo[600], // untuk warna elemen seperti text pada button
+foregroundColor: Colors.white, // untuk warna elemen seperti text pada button
 ```
 Saya menggunakan warna berupa indigo 600 untuk button Tambah Produk dengan kutipan kode berikut
 ```
