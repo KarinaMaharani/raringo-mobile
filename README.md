@@ -35,7 +35,130 @@ Jelaskan perbedaan antara const dengan final.
 - final : digunakan untuk variabel yang di deklarasikan dan tidak bisa diubah saat dideklarasi selama runtime. Sehingga variabel final bisa jadi hanya diinstansi jika memenuhi kondisi pada runtime sehingga jika kondisi tersebut tidak dipenuhi variabel final tidak _exist_ selama program berjalan. Sedangkan untuk const akan teteap terdefinisi daan _exist_ sekalipun syarat kondisi dipenuhi.  
 
 Jelaskan bagaimana cara kamu mengimplementasikan checklist-checklist di atas.  
-**Jawab**:
+**Jawab**:  
+1.  Membuat sebuah program Flutter baru dengan tema E-Commerce yang sesuai dengan tugas-tugas sebelumnya.  
+Saya membuat program flutter baru dengan menggunakan "flutter create [NAMA APLIKASI]" pada sebuah root folder baru di file explorer
+Flutter akan membuat proyek baru dengan memiliki subfolder dengan nama aplikasi. Terdpat folder seperti web, ios, dsb. untuk membuat program menjadi adaptif dan responsif. Tapi untuk tugas 7 ini kita hanya menggunakan lib yang akan berisikan file dart. File dart akan diisi dengan kode dan widget kami.  
+2. Membuat tiga tombol sederhana dengan ikon dan teks untuk:  
+ - Melihat daftar produk (Lihat Daftar Produk)  
+ Saya membuat widget untuk tombol daftar product sebagai floating button di ujung kanan bawah aplikasi pada body sebagai sebuah child dengan style ElevatedButton dan menggunakan snackbar untuk menampilkan teks saat button di pencet, dengan kutipan kode sebagai berikut :
+```
+Center(
+              child: ElevatedButton.icon(
+                icon: const Icon(Icons.open_in_new),
+                label: const Text('Lihat Daftar Produk!'),
+                onPressed: () {
+                  ScaffoldMessenger.of(context)
+                    ..hideCurrentSnackBar()
+                    ..showSnackBar(
+                      const SnackBar(content: Text("Kamu telah menekan tombol Lihat Daftar Produk!")),
+                    );
+                },
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+                  textStyle: const TextStyle(fontSize: 18.0),
+                  backgroundColor: Colors.yellow[800],
+                  foregroundColor: Colors.indigo[600],
+                ),
+                
+              ),
+            ),
+```
+ - Menambah produk (Tambah Produk)  
+ Saya membuat widget untuk tombol tambah product pada body dan menggunakan snackbar untuk menampilkan teks saat button di pencet.
+```
+floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(
+              const SnackBar(content: Text("Kamu telah menekan tombol Tambah Produk!")),
+            );
+        },
+        backgroundColor: Colors.indigo[600],
+        child: const Icon(Icons.add),
+      ),
+```
+ - Logout (Logout) (Catatan saat debug tombol ada di kanan atas sehingga terteutup banner debug/demo)  
+Saya membuat widget untuk tombol logout pada appbar dan menggunakan snackbar untuk menampilkan teks saat button di pencet, dengan kutipan kode sebagai beriikut :
+
+```
+appBar: AppBar(
+        backgroundColor: Colors.indigo[600],
+        title: const Text(
+          'RARINGO',
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'Silkscreen', 
+          ),
+        ),
+        actions: [
+          IconButton(
+            icon: const Icon(
+              Icons.logout,
+              color: Colors.white,),
+            onPressed: () {
+              ScaffoldMessenger.of(context)
+                ..hideCurrentSnackBar()
+                ..showSnackBar(
+                  const SnackBar(content: Text("Kamu telah menekan tombol Logout!")),
+                );
+            },
+          ),
+        ],
+      ),
+```
+4.  Mengimplementasikan warna-warna yang berbeda untuk setiap tombol (Lihat Daftar Produk, Tambah Produk, dan Logout)
+Saya menggunakan warna berupa yellow dan text indigo 600 untuk button Lihat Daftar Produk dengan kutipan kode berikut
+```
+backgroundColor: Colors.yellow[800], // untuk warna button
+foregroundColor: Colors.indigo[600], // untuk warna elemen seperti text pada button
+```
+Saya menggunakan warna berupa indigo 600 untuk button Tambah Produk dengan kutipan kode berikut
+```
+backgroundColor: Colors.indigo[600],
+```
+Saya menggunakan warna putih untuk icon yang digunakan sebagai logout dengan kutipan kode berikut
+```
+ actions: [
+          IconButton(
+            icon: const Icon(
+              Icons.logout,
+              color: Colors.white,),
+```
+6. Memunculkan Snackbar dengan text tertentu saat tombol di klik
+Karena pada program saya setiap button merupakan elemen tersenndiri maka untuk text yang ditampilkan bersifat _hard coded_ namun tidak berpengaruh pada output akhir karena setiap button merefer ke snackbar yang sama hanya saja text yang ditampilkan sudah ditentukan (tidak mengambil nilai variabel name).
+Kutipan kode snackbar Button Lihat Daftar Produk :
+```
+onPressed: () {
+                  ScaffoldMessenger.of(context)
+                    ..hideCurrentSnackBar()
+                    ..showSnackBar(
+                      const SnackBar(content: Text("Kamu telah menekan tombol Lihat Daftar Produk!")),
+                    );
+                },
+```
+Kutipan kode snackbar Button Tambah Produk :  
+```
+onPressed: () {
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(
+              const SnackBar(content: Text("Kamu telah menekan tombol Tambah Produk!")),
+            );
+        },
+```
+Kutipan kode snackbar Button Logout :  
+```
+onPressed: () {
+              ScaffoldMessenger.of(context)
+                ..hideCurrentSnackBar()
+                ..showSnackBar(
+                  const SnackBar(content: Text("Kamu telah menekan tombol Logout!")),
+                );
+            },
+```
 
 
 ## Getting Started
