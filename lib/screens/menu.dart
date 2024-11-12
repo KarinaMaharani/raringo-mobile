@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:raringo/widgets/left_drawer.dart';
+import 'package:raringo/screens/productentry_form.dart';
 
 class MyHomePage extends StatelessWidget {
   final String npm = '2306165736'; // NPM
@@ -15,7 +17,8 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.indigo[600],
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        
         title: const Text(
           'RARINGO',
           style: TextStyle(
@@ -24,6 +27,14 @@ class MyHomePage extends StatelessWidget {
             fontFamily: 'Silkscreen', 
           ),
         ),
+
+        leading: Builder(
+          builder: (context) => IconButton(
+            icon: const Icon(Icons.menu, color: Colors.white), // Ensures the icon is white
+            onPressed: () => Scaffold.of(context).openDrawer(),
+          ),
+        ),
+
         actions: [
           IconButton(
             icon: const Icon(
@@ -38,7 +49,10 @@ class MyHomePage extends StatelessWidget {
             },
           ),
         ],
+        
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
+      drawer: const LeftDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -94,6 +108,10 @@ class MyHomePage extends StatelessWidget {
             ..showSnackBar(
               const SnackBar(content: Text("Kamu telah menekan tombol Tambah Produk!")),
             );
+          Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const ProductEntryFormPage())
+          );
         },
         backgroundColor: Colors.indigo[600],
         child: const Icon(Icons.add),
