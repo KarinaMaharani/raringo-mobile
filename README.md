@@ -160,6 +160,90 @@ onPressed: () {
             },
 ```
 
+## Tugas 8
+Apa kegunaan const di Flutter? Jelaskan apa keuntungan ketika menggunakan const pada kode Flutter. Kapan sebaiknya kita menggunakan const, dan kapan sebaiknya tidak digunakan?   
+Jawab : const digunakan untuk mendefinisikan variabel konstan. Dengan menyataka variabel konstan developer dapat membatasi pengunaan memori dan peningkatan waktu performance sehingga variabel tersebut dianggap tidak akan berubah (memerlukan memori yang variatif atau waktu pemrosesan yang lama).   
+const sebaiknya digunakan untuk widget yang tidak mengalami perubahan seperti elemen text dan image. const kurang baik digunakan untuk widget yang dapat berubah bentuk seperti data yang berasal dari database dan stateful widget.  
+
+Jelaskan dan bandingkan penggunaan Column dan Row pada Flutter. Berikan contoh implementasi dari masing-masing layout widget ini!   
+Jawab : Column dan Row adalah cara penyusunan widget yang mengutilisasikan sistem seperti tabel. 
+
+Row menyusun semua childrennya secara horizontal contoh penggunaannya seperti dalam navbar dimana setiap fitur akan disusun ke samping.
+Berikut contoh implementasi :
+```
+
+// Contoh Row
+Row(
+  children: <Widget>[
+    Text('Home'),
+    Text('Shop'),
+    Text('Account')
+  ],
+)
+// HASIL
+// -------------------------
+// | Home | Shop | Account |
+// -------------------------
+```
+
+Column menyusun semua childrennya secara vertikal, contoh penggunaannya seperti dalam form dimana kita akan menyusun setiap input di baris selanjutnya. 
+```
+// Contoh Column
+Column(
+  children: <Widget>[
+    Text('Nama:'),
+    TextField(),
+    Text('Alamat:'),
+    TextField()
+  ],
+)
+// HASIL
+// -------------------
+// | Nama :          |
+// -------------------
+// | [input field]   |
+// -------------------
+// | Alamat :        |
+// -------------------
+// | [input field]   |
+// -------------------
+
+```
+
+
+Sebutkan apa saja elemen input yang kamu gunakan pada halaman form yang kamu buat pada tugas kali ini. Apakah terdapat elemen input Flutter lain yang tidak kamu gunakan pada tugas ini? Jelaskan!    
+Jawab : Saya menggunakan TextFormField untuk user mengisi nilai berupa text dan integer dan ElevatedButton untuk melakukan penyimpanan. Element input yang belum digunakan dalam program ada Checkbox (bisa memilih beberapa pilihan yang sudah didefinisikan), Dropdown(bisa salah satu pilihan dari pilihan yang sudah didefinisikan), Slider (memilih nilai integer secara intuitif), Date Picker (Jika ada pemilihan tanggal), Time Picker (Jika ada pemilihan waktu jam, menit, detik), Switch (mirip dengan toggle, memiliki nilai binary)   
+
+Bagaimana cara kamu mengatur tema (theme) dalam aplikasi Flutter agar aplikasi yang dibuat konsisten? Apakah kamu mengimplementasikan tema pada aplikasi yang kamu buat?   
+Jawab : Mendefiniskan tema pada file main.dart pada bagian theme untuk mengubah nilai pada ThemeData pada library Material yang digunakan keseluruhan program.
+```
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Raringo',
+      theme: ThemeData(
+        ....
+      // colorScheme digunakan untuk penentuan warna utama (primarySwatch), warna aksen (accentColor), karakterisik teks (textTheme)
+      colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.indigo,). 
+      copyWith(secondary: Colors.indigo[400]),
+        useMaterial3: true,
+      ),
+      home: MyHomePage(),
+    );
+  }
+```
+Kita juga dapat mendefinisikan tema dan warna lebih specifik lagi pada elemen, tema di main.dart hanya sebagai global.css sedangkan spesifikasi tema lanjutan pada elemen di scaffold serupa dengan inline css sehingga akan lebih diprioritaaskan.
+
+Bagaimana cara kamu menangani navigasi dalam aplikasi dengan banyak halaman pada Flutter?   
+Jawab : Dapat menggunakan elemen Navigator dengan pop atau push untuk mendefinisikan routing. Kemudian didalam elemen navigator kita mengload route tujuan melalui MaterialPageRoute. Berikut contoh routing :   
+```
+Navigator.push(
+  context,
+  MaterialPageRoute(builder: (context) => [NAMA_PAGE TUJUAN()] ),
+);
+```
+
+
 
 ## Getting Started
 
