@@ -31,9 +31,9 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.indigo,).copyWith(secondary: Colors.indigo[400]),
         useMaterial3: true,
-      ),
+        ),
       home: MyHomePage(),
-    );
+      );
   }
 }
 

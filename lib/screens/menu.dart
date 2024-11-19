@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:raringo/widgets/left_drawer.dart';
 import 'package:raringo/screens/productentry_form.dart';
+import 'package:raringo/screens/login.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
 
 class MyHomePage extends StatelessWidget {
   final String npm = '2306165736'; // NPM
@@ -15,41 +18,56 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.primary,
-        
         title: const Text(
           'RARINGO',
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
-            fontFamily: 'Silkscreen', 
+            fontFamily: 'Silkscreen',
           ),
         ),
-
         leading: Builder(
           builder: (context) => IconButton(
-            icon: const Icon(Icons.menu, color: Colors.white), // Ensures the icon is white
+            icon: const Icon(Icons.menu, color: Colors.white),
             onPressed: () => Scaffold.of(context).openDrawer(),
           ),
         ),
-
         actions: [
           IconButton(
             icon: const Icon(
               Icons.logout,
-              color: Colors.white,),
-            onPressed: () {
-              ScaffoldMessenger.of(context)
-                ..hideCurrentSnackBar()
-                ..showSnackBar(
-                  const SnackBar(content: Text("Kamu telah menekan tombol Logout!")),
-                );
+              color: Colors.white,
+            ),
+            onPressed: () async {
+              final response = await request.logout(
+                  "http://karina-maharani31-raringo.pbp.cs.ui.ac.id/auth/logout/");
+              String message = response["message"];
+              if (context.mounted) {
+                if (response['status']) {
+                  String uname = response["username"];
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text("Kamu telah menekan tombol Logout! Sampai jumpa, $uname."),
+                  ));
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => const LoginPage()),
+                  );
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(message),
+                    ),
+                  );
+                }
+              }
             },
           ),
         ],
-        
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       drawer: const LeftDrawer(),
@@ -58,11 +76,8 @@ class MyHomePage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // Full-width banner for welcome message
             InfoCard(title: 'Welcome, $name', content: '$npm, $className'),
             const SizedBox(height: 24.0),
-
-            // "Find Your Hobby Products!" text
             const Padding(
               padding: EdgeInsets.symmetric(vertical: 24.0),
               child: Text(
@@ -74,44 +89,35 @@ class MyHomePage extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
             ),
-
-            // Large centered button for "Add Product"
             Center(
               child: ElevatedButton.icon(
                 icon: const Icon(Icons.open_in_new),
                 label: const Text('Lihat Daftar Produk!'),
                 onPressed: () {
-                  ScaffoldMessenger.of(context)
-                    ..hideCurrentSnackBar()
-                    ..showSnackBar(
-                      const SnackBar(content: Text("Kamu telah menekan tombol Lihat Daftar Produk!")),
-                    );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ProductEntryFormPage()),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 24.0, vertical: 16.0),
                   textStyle: const TextStyle(fontSize: 18.0),
                   backgroundColor: Colors.yellow[800],
                   foregroundColor: Colors.white,
                 ),
-                
               ),
             ),
           ],
         ),
       ),
-      
-      // Plus button as FloatingActionButton in the bottom-right corner
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(
-              const SnackBar(content: Text("Kamu telah menekan tombol Tambah Produk!")),
-            );
           Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const ProductEntryFormPage())
-          );
+              MaterialPageRoute(
+                  builder: (context) => const ProductEntryFormPage()));
         },
         backgroundColor: Colors.indigo[600],
         child: const Icon(Icons.add),
@@ -121,8 +127,8 @@ class MyHomePage extends StatelessWidget {
 }
 
 class InfoCard extends StatelessWidget {
-  final String title;  // Judul kartu.
-  final String content;  // Isi kartu.
+  final String title;
+  final String content;
 
   const InfoCard({super.key, required this.title, required this.content});
 
