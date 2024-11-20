@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:raringo/widgets/left_drawer.dart';
 import 'package:raringo/screens/productentry_form.dart';
+import 'package:raringo/screens/list_product.dart';
 import 'package:raringo/screens/login.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 
 class MyHomePage extends StatelessWidget {
   final String npm = '2306165736'; // NPM
-  final String name = 'Karina Maharani'; // Nama
-  final String className = 'PBP A'; // Kelas
+  final String className = 'PBP A'; // Class
 
   MyHomePage({super.key});
 
@@ -19,6 +19,7 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
+    String username = request.jsonData['username'] ?? 'User'; // Get username from CookieRequest
 
     return Scaffold(
       appBar: AppBar(
@@ -45,7 +46,7 @@ class MyHomePage extends StatelessWidget {
             ),
             onPressed: () async {
               final response = await request.logout(
-                  "http://karina-maharani31-raringo.pbp.cs.ui.ac.id/auth/logout/");
+                  "http://127.0.0.1:8000/auth/logout/");
               String message = response["message"];
               if (context.mounted) {
                 if (response['status']) {
@@ -76,7 +77,7 @@ class MyHomePage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            InfoCard(title: 'Welcome, $name', content: '$npm, $className'),
+            InfoCard(title: 'Welcome, $username', content: '$npm, $className'),
             const SizedBox(height: 24.0),
             const Padding(
               padding: EdgeInsets.symmetric(vertical: 24.0),
@@ -97,7 +98,7 @@ class MyHomePage extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const ProductEntryFormPage()),
+                        builder: (context) => const ProductEntryPage()),
                   );
                 },
                 style: ElevatedButton.styleFrom(

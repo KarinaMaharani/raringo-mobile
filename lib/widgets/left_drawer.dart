@@ -23,6 +23,7 @@ class LeftDrawer extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
+                    fontFamily: 'Silkscreen',
                     color: Colors.white,
                   ),
                 ),
@@ -63,7 +64,7 @@ class LeftDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.add_reaction_rounded),
+            leading: const Icon(Icons.library_books_rounded),
             title: const Text('Daftar Produk'),
             onTap: () {
                 // Route menu ke halaman mood

@@ -21,7 +21,6 @@ class _RegisterPageState extends State<RegisterPage> {
     final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Register'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -47,6 +46,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     style: TextStyle(
                       fontSize: 24.0,
                       fontWeight: FontWeight.bold,
+                      fontFamily: 'Silkscreen',
                     ),
                   ),
                   const SizedBox(height: 30.0),
@@ -120,7 +120,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       // Untuk menyambungkan Android emulator dengan Django pada localhost,
                       // gunakan URL http://10.0.2.2/
                       final response = await request.postJson(
-                          "http://karina-maharani31-raringo.pbp.cs.ui.ac.id/auth/register/",
+                          "http://127.0.0.1:8000/auth/register/",
                           jsonEncode({
                             "username": username,
                             "password1": password1,

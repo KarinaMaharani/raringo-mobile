@@ -44,7 +44,6 @@ class _LoginPageState extends State<LoginPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login'),
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -64,6 +63,7 @@ class _LoginPageState extends State<LoginPage> {
                     style: TextStyle(
                       fontSize: 24.0,
                       fontWeight: FontWeight.bold,
+                      fontFamily: 'Silkscreen',
                     ),
                   ),
                   const SizedBox(height: 30.0),
@@ -104,7 +104,7 @@ class _LoginPageState extends State<LoginPage> {
                       // Untuk menyambungkan Android emulator dengan Django pada localhost,
                       // gunakan URL http://10.0.2.2/
                       final response = await request
-                          .login("http://karina-maharani31-raringo.pbp.cs.ui.ac.id/auth/login/", {
+                          .login("http://127.0.0.1:8000/auth/login/", {
                         'username': username,
                         'password': password,
                       });

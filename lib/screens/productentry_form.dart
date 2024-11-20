@@ -26,13 +26,15 @@ class _ProductEntryFormPageState extends State<ProductEntryFormPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Center(
-          child: Text(
-            'Form Tambah Produk',
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        iconTheme: const IconThemeData(color: Colors.white),
+        title: const Text('Form Tambah Produk',
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'Silkscreen',
           ),
         ),
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        foregroundColor: Colors.white,
       ),
       drawer: const LeftDrawer(),
       body: Form(
@@ -125,7 +127,7 @@ class _ProductEntryFormPageState extends State<ProductEntryFormPage> {
                             .split('T')[0];
 
                         final response = await request.postJson(
-                          "http://karina-maharani31-raringo.pbp.cs.ui.ac.id/create-flutter/",
+                          "http://127.0.0.1:8000/create-flutter/",
                           jsonEncode({
                             'name': _productname,
                             'price': _price.toString(),
